@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "ic_taskCenter_tab_selected.png",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
