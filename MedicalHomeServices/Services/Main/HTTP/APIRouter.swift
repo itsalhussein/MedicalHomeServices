@@ -13,16 +13,25 @@ enum APIRouter: URLRequestConvertible {
     case Register(SignUpRequest)
     case Login(SignInRequest)
     case MedicalServices
+    case AddUserToProviderRequest([AddUserToProviderRequestModel])
+    case ServiceRequest(ServiceRequestModel)
+    case RequestNominatedProviders(Int)
+    case ProviderNominatedRequests(Int)
+    
+    case GetUserServices(Int)
+    
+    case AddTempProviderToRequest
+    case ActionByProviderToRequest
+    case GetRequestStatus
+    case UpdateRequestStatus
 
     //MARK: - Updates
 
     public var method: HTTPMethod {
         switch self {
-        case .Register:
+        case .Register,.Login,.AddUserToProviderRequest,.ServiceRequest,.ActionByProviderToRequest,.AddTempProviderToRequest,.UpdateRequestStatus:
             return .post
-        case .Login:
-            return .post
-        case .MedicalServices:
+        case .MedicalServices,.RequestNominatedProviders,.ProviderNominatedRequests,.GetUserServices,.GetRequestStatus:
             return .get
         }
     }
@@ -35,6 +44,24 @@ enum APIRouter: URLRequestConvertible {
             return "/Auth/login"
         case .MedicalServices:
             return "/MedicalService"
+        case .AddUserToProviderRequest:
+            return "/ServiceProvider/AddUserToProviderRequests"
+        case .ServiceRequest:
+            return "/ServiceRequest"
+        case .RequestNominatedProviders:
+            return "/ServiceRequest/GetRequestNominatedProviders"
+        case .ProviderNominatedRequests:
+            return "/ServiceRequest/GetProviderNominatedRequests"
+        case .GetUserServices:
+            return "/ServiceProvider/GetUserToProviderRequests"
+        case .AddTempProviderToRequest:
+            return "/ServiceRequest/AddTempProviderToRequest"
+        case .ActionByProviderToRequest:
+            return "/ServiceRequest/ReactionByTempProviderToRequest"
+        case .GetRequestStatus:
+            return "/ServiceRequest/NotifyUserOfRequestStatus"
+        case .UpdateRequestStatus:
+            return "/ServiceRequest/UpdateRequestStatus"
         }
     }
     
@@ -48,81 +75,6 @@ enum APIRouter: URLRequestConvertible {
         }
     }
     
-    struct MultiPartData {
-        let data: Data?
-        let name: String
-        let fileName: String?
-        let mimeType: String?
-    }
-    
-    var multiPartData: [MultiPartData]? {
-        switch self {
-//         case .upload(let file):
-//            var multipartData : [MultiPartData] = []
-//            switch file.value {
-//            case .document(let  url):
-//                let data = try? Data(contentsOf: url)
-//                multipartData.append(
-//                    MultiPartData(
-//                        data: data,
-//                        name: "Attachment",
-//                        fileName: url.lastPathComponent,
-//                        mimeType: url.mimeType
-//                    )
-//                )
-//            case .image(let image):
-//                if let imageData  = image.data() {
-//                    multipartData.append(
-//                        MultiPartData(
-//                            data: imageData,
-//                            name: "Attachment",
-//                            fileName: "\(UUID().uuidString).jpeg",
-//                            mimeType: nil
-//                        )
-//                    )
-//                }
-//            }
-//            return multipartData
-            
-            
-//            [
-//                MultiPartData(
-//                    data: data,
-//                    name: "Attachment",
-//                    fileName: imageURL.lastPathComponent,
-//                    mimeType: imageURL.mimeType
-//                )
-//            ]
-//
-//        case .upload(let file):
-//            let data = try? Data(contentsOf: file)
-//            return [
-//                MultiPartData(
-//                    data: data,
-//                    name: "file",
-//                    fileName: file.lastPathComponent,
-//                    mimeType: file.mimeType
-//                )
-//            ]
-            
-        default:
-            return nil
-        }
-    }
-    
-    
-    var multiPartParameters: [URLQueryItem]? {
-        switch self {
-        // case .completeProfile(let request, _):
-        //     return try? newURLQueryItemEncoder().encode(request)
-        //
-        default:
-            break
-        }
-        return nil
-    }
-    
-    
     private var parameters: Data? {
         switch self {
         
@@ -130,7 +82,10 @@ enum APIRouter: URLRequestConvertible {
             return try? newJSONEncoder().encode(signUpModel)
         case .Login(let signInModel):
             return try? newJSONEncoder().encode(signInModel)
-
+        case .AddUserToProviderRequest(let model):
+            return try? newJSONEncoder().encode(model)
+        case .ServiceRequest(let model):
+            return try? newJSONEncoder().encode(model)
 
         default:
             break
@@ -142,30 +97,13 @@ enum APIRouter: URLRequestConvertible {
         switch self {
 
 //            // MARK: Task Center
-//        case .customModule(let moduleId):
-//            return [URLQueryItem(name: "moduleId", value: moduleId.planeString)]
-//        case .customModuleDetails(let moduleId, _):
-//            return [URLQueryItem(name: "moduleId", value: moduleId.planeString)]
-//
-//            // MARK: Workflow Data (My Space)
-//        case .registry(let filter):
-//            return [URLQueryItem(name: "Filters", value: filter)]
-//        case .getSectionForEdit:
-//            return [URLQueryItem(name: "mode", value: "edit")]
-//        case .getActionItemForEdit:
-//            return [URLQueryItem(name: "mode", value: "edit")]
-////
-//        case .workflowAction(let action):
-//            return URLComponents(string: action.url)?.queryItems
-//            
-        
-//
-//        case .modulePrivileges(let moduleId, let instanceId):
-//            return [
-//                URLQueryItem(name: "moduleId", value: moduleId.planeString),
-//                URLQueryItem(name: "instanceId", value: instanceId.planeString)
-//            ]
-
+        case .RequestNominatedProviders(let requestId):
+            return [URLQueryItem(name: "requestID", value: "\(requestId)")]
+        case .ProviderNominatedRequests(let providerId):
+            return [URLQueryItem(name: "providerID", value: "\(providerId)")]
+        case .GetUserServices(let userId):
+            return [URLQueryItem(name: "userID", value: "\(userId)")]
+    
         default:
             break
         }
@@ -174,8 +112,6 @@ enum APIRouter: URLRequestConvertible {
     
     private var acceptContentType: String? {
         switch self {
-//        case .download(let attachment):
-//            return attachment.body.contentType
         case .MedicalServices:
             return "text/plain"
         default:

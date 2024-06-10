@@ -34,16 +34,8 @@ final class AppSettings: ObservableObject {
     @AppStorage("currentUser") var currentUser:UserRepsonse?
     @AppStorage("accessToken") var accessToken:String?
     @AppStorage("cacheSession") var cacheSession:String?
-//    @AppStorageCodable(wrappedValue: nil, key: "settingsData") var settingsData : SettingsData?
+    @AppStorage("userLocation") var userLocation:MHSUserLocation?
 
-
-    //MARK: - Static variables
-    static let RSA_PUBLICKEY = """
-MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC1DRnhDDtZqHq0+uEg87TbK5uF
-BsADPtpRczmrpuVFZlf/2fMBjDqLDDgUFv8Fy0uN8fsPTx7wFFeTRO/o1pIY9BpC
-B1ZD7zpnG4r9b2p7wKHoPtenVtGPK+sjS9olB6D9N6mcZEY843OjT6xP/FLELfcj
-Q+ZjpU/Tjo/D/qJVQwIDAQAB
-"""
     
     // MARK: - Init
     init() {
@@ -70,6 +62,11 @@ Q+ZjpU/Tjo/D/qJVQwIDAQAB
         }else{
             appStatus = .home
         }
+    }
+    
+    func isProvider() -> Bool {
+        guard let roles = currentUser?.roles else { return false }
+        return roles.contains("Provider")
     }
     
 

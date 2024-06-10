@@ -11,7 +11,8 @@ import SwiftUI
 struct ContentView: View {
     @StateObject private var appSettings = AppSettings.shared
     @ObservedObject private var router = Router.shared
-
+    @StateObject private var locationManager = LocationManager()
+    
     init() {
         let appearance = UINavigationBarAppearance()
         appearance.backgroundColor = .white
@@ -26,6 +27,9 @@ struct ContentView: View {
             .environment(\.locale, appSettings.local)
             .environment(\.layoutDirection, appSettings.layoutDirection)
             .environment(\.colorScheme, appSettings.colorScheme)
+            .onAppear {
+                locationManager.locationManager.startUpdatingLocation()
+            }
     }
 
     @ViewBuilder

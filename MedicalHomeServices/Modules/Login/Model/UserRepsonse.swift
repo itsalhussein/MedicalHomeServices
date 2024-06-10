@@ -12,21 +12,26 @@ struct UserRepsonse : Codable {
     let isAuthenticated : Bool?
     let username : String?
     let email : String?
-//    let roles: String?
+    let roles: [String]?
     let token : String?
+    let userID : Int?
     
     enum CodingKeys: String, CodingKey {
-        case isAuthenticated, username, email, token
+        case isAuthenticated, username, email, token,roles,userID
     }
     
     init(isAuthenticated: Bool?,
          username: String?,
          email: String?,
-         token: String?) {
+         roles: [String]?,
+         token: String?,
+         userID: Int) {
            self.isAuthenticated = isAuthenticated
            self.username = username
            self.email = email
+           self.roles = roles
            self.token = token
+           self.userID = userID
        }
     
     init(from decoder: Decoder) throws {
@@ -34,7 +39,9 @@ struct UserRepsonse : Codable {
         isAuthenticated = try container.decodeIfPresent(Bool.self, forKey: .isAuthenticated)
         username = try container.decodeIfPresent(String.self, forKey: .username)
         email = try container.decodeIfPresent(String.self, forKey: .email)
+        roles = try container.decodeIfPresent([String].self, forKey: .roles)
         token = try container.decodeIfPresent(String.self, forKey: .token)
+        userID =  try container.decodeIfPresent(Int.self, forKey: .userID)
     }
     
     func encode(to encoder: Encoder) throws {
@@ -44,6 +51,8 @@ struct UserRepsonse : Codable {
         try container.encodeIfPresent(username, forKey: .username)
         try container.encodeIfPresent(email, forKey: .email)
         try container.encodeIfPresent(token, forKey: .token)
+        try container.encodeIfPresent(roles, forKey: .roles)
+        try container.encodeIfPresent(userID, forKey: .userID)
     }
 }
 
