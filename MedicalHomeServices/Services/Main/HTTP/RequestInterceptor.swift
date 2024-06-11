@@ -1,10 +1,3 @@
-//
-//  RequestInterceptor.swift
-//  Tarat Store
-//
-//  Created by Khaled Khaldi on 12/02/2022.
-//
-
 import Foundation
 import Alamofire
 // import FirebaseAuth

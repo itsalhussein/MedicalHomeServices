@@ -48,6 +48,7 @@ struct SwitchToProviderSheet: View {
         .onAppear(perform: {
             Task {
                 await viewModel.getMedicalServices()
+                await viewModel.getUserServices()
             }
         })
         .onReceive(viewModel.successSubject, perform: { _ in
@@ -83,54 +84,6 @@ struct TagView: View {
 }
 
 
-
-
-class SwitchToProviderSheetViewModel : BaseViewModel {
-    let providerID = AppSettings.shared.currentUser?.userID
-    @Published var medicalServices : [MedicalService] = []
-    @Published var selectedServices : [MedicalService] = []
-    var successSubject = PassthroughSubject<Void,Never>()
-
-    @MainActor
-    func getMedicalServices() async {
-        state.startLoading()
-        do {
-            
-            let route = APIRouter.MedicalServices
-            let response : [MedicalService]?
-            response = try await APIService.shared.fetch(route: route)
-            if let response {
-                medicalServices = response
-            }
-            error = nil
-        } catch {
-            self.error = error
-            
-        }
-        state.endLoading()
-    }
-    
-    
-    @MainActor
-    func switchToProvider() async {
-        state.startLoading()
-        do {
-            let request = selectedServices.map { service -> AddUserToProviderRequestModel in
-                return .init(providerID: providerID, serviceID: service.id)
-            }
-            let route = APIRouter.AddUserToProviderRequest(request)
-            let response : String?
-            response = try await APIService.shared.fetch(route: route)
-            successSubject.send(())
-            error = nil
-        } catch {
-            self.error = error
-            
-        }
-        state.endLoading()
-    }
-    
-}
 
 #Preview {
     SwitchToProviderSheet()

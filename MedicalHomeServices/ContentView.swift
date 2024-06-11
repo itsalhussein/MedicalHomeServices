@@ -10,7 +10,6 @@ import SwiftUI
 
 struct ContentView: View {
     @StateObject private var appSettings = AppSettings.shared
-    @ObservedObject private var router = Router.shared
     @StateObject private var locationManager = LocationManager()
     
     init() {
@@ -23,7 +22,6 @@ struct ContentView: View {
         getView()
             .animation(.default, value: appSettings.appStatus)
             .environmentObject(appSettings)
-            .environmentObject(router)
             .environment(\.locale, appSettings.local)
             .environment(\.layoutDirection, appSettings.layoutDirection)
             .environment(\.colorScheme, appSettings.colorScheme)

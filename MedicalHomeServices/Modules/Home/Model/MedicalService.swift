@@ -13,5 +13,4 @@ struct MedicalService: Identifiable,Codable,Equatable {
     var modifiedBy: Int?
     var id: Int?
     var name: String?
-    
 }

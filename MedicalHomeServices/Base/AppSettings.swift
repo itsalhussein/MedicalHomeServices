@@ -55,7 +55,11 @@ final class AppSettings: ObservableObject {
         accessToken = nil
         currentUser = nil
     }
-    
+    func logOut(){
+        resetUserSettings()
+        appStatus = .notLoggedIn
+        rootViewId = UUID()
+    }
     func setNextMainScreen(){
         if currentUser == nil {
             appStatus = .notLoggedIn

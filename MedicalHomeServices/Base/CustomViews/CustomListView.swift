@@ -1,6 +1,5 @@
 //
 //  CustomListView.swift
-//  Ekhtesrha
 //
 //  Created by Hussein Anwar.
 //

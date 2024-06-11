@@ -23,6 +23,16 @@
 		0C5E77592C179F3800F790D5 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5E77582C179F3800F790D5 /* HomeViewModel.swift */; };
 		0C5E775F2C179F6900F790D5 /* NominatedProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5E775E2C179F6900F790D5 /* NominatedProvider.swift */; };
 		0C5E77642C17A59300F790D5 /* MedicalServiceSheetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5E77632C17A59300F790D5 /* MedicalServiceSheetViewModel.swift */; };
+		0C5E776A2C17C5D700F790D5 /* SwitchToProviderSheetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5E77692C17C5D700F790D5 /* SwitchToProviderSheetViewModel.swift */; };
+		0C5E776D2C17C66400F790D5 /* UserServiceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5E776C2C17C66400F790D5 /* UserServiceModel.swift */; };
+		0C5E77702C181EB600F790D5 /* RequestDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5E776F2C181EB600F790D5 /* RequestDetailsView.swift */; };
+		0C5E77722C181F9500F790D5 /* RequestDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5E77712C181F9500F790D5 /* RequestDetailsViewModel.swift */; };
+		0C5E77772C1820ED00F790D5 /* RequestStatusModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5E77762C1820ED00F790D5 /* RequestStatusModel.swift */; };
+		0C5E77792C1825AC00F790D5 /* NominatedRequestsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5E77782C1825AB00F790D5 /* NominatedRequestsView.swift */; };
+		0C5E777D2C182D4D00F790D5 /* TermsAndConditionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5E777C2C182D4D00F790D5 /* TermsAndConditionsView.swift */; };
+		0C5E77802C18385F00F790D5 /* AboutUsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5E777F2C18385F00F790D5 /* AboutUsView.swift */; };
+		0C5E77822C18395F00F790D5 /* NominatedRquestsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5E77812C18395F00F790D5 /* NominatedRquestsViewModel.swift */; };
+		0C5E77852C18399800F790D5 /* UpdateProviderLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5E77842C18399800F790D5 /* UpdateProviderLocation.swift */; };
 		0C929DB42C13593F0037D927 /* MedicalService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C929DB32C13593F0037D927 /* MedicalService.swift */; };
 		0CD662512C11BF78004BC263 /* UserRepsonse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CD662502C11BF78004BC263 /* UserRepsonse.swift */; };
 		0CD662542C11C161004BC263 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 0CD662532C11C161004BC263 /* IQKeyboardManagerSwift */; };
@@ -101,7 +111,6 @@
 		0CFE13242C110CB0000747C8 /* MailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CFE130B2C110CB0000747C8 /* MailView.swift */; };
 		0CFE13252C110CB0000747C8 /* NoDataToPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CFE130C2C110CB0000747C8 /* NoDataToPreviewView.swift */; };
 		0CFE13262C110CB0000747C8 /* TabsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CFE130D2C110CB0000747C8 /* TabsView.swift */; };
-		0CFE13272C110CB0000747C8 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CFE130F2C110CB0000747C8 /* Router.swift */; };
 		0CFE13282C110CB0000747C8 /* DropDownData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CFE13112C110CB0000747C8 /* DropDownData.swift */; };
 		0CFE13292C110CB0000747C8 /* CircleProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CFE13132C110CB0000747C8 /* CircleProgressView.swift */; };
 		0CFE132A2C110CB0000747C8 /* LoadingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CFE13142C110CB0000747C8 /* LoadingState.swift */; };
@@ -128,6 +137,16 @@
 		0C5E77582C179F3800F790D5 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		0C5E775E2C179F6900F790D5 /* NominatedProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NominatedProvider.swift; sourceTree = "<group>"; };
 		0C5E77632C17A59300F790D5 /* MedicalServiceSheetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicalServiceSheetViewModel.swift; sourceTree = "<group>"; };
+		0C5E77692C17C5D700F790D5 /* SwitchToProviderSheetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchToProviderSheetViewModel.swift; sourceTree = "<group>"; };
+		0C5E776C2C17C66400F790D5 /* UserServiceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserServiceModel.swift; sourceTree = "<group>"; };
+		0C5E776F2C181EB600F790D5 /* RequestDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestDetailsView.swift; sourceTree = "<group>"; };
+		0C5E77712C181F9500F790D5 /* RequestDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestDetailsViewModel.swift; sourceTree = "<group>"; };
+		0C5E77762C1820ED00F790D5 /* RequestStatusModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestStatusModel.swift; sourceTree = "<group>"; };
+		0C5E77782C1825AB00F790D5 /* NominatedRequestsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NominatedRequestsView.swift; sourceTree = "<group>"; };
+		0C5E777C2C182D4D00F790D5 /* TermsAndConditionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsAndConditionsView.swift; sourceTree = "<group>"; };
+		0C5E777F2C18385F00F790D5 /* AboutUsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsView.swift; sourceTree = "<group>"; };
+		0C5E77812C18395F00F790D5 /* NominatedRquestsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NominatedRquestsViewModel.swift; sourceTree = "<group>"; };
+		0C5E77842C18399800F790D5 /* UpdateProviderLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateProviderLocation.swift; sourceTree = "<group>"; };
 		0C929DB32C13593F0037D927 /* MedicalService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicalService.swift; sourceTree = "<group>"; };
 		0CD662502C11BF78004BC263 /* UserRepsonse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepsonse.swift; sourceTree = "<group>"; };
 		0CD662562C11C21C004BC263 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
@@ -202,7 +221,6 @@
 		0CFE130B2C110CB0000747C8 /* MailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MailView.swift; sourceTree = "<group>"; };
 		0CFE130C2C110CB0000747C8 /* NoDataToPreviewView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoDataToPreviewView.swift; sourceTree = "<group>"; };
 		0CFE130D2C110CB0000747C8 /* TabsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabsView.swift; sourceTree = "<group>"; };
-		0CFE130F2C110CB0000747C8 /* Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		0CFE13112C110CB0000747C8 /* DropDownData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropDownData.swift; sourceTree = "<group>"; };
 		0CFE13132C110CB0000747C8 /* CircleProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleProgressView.swift; sourceTree = "<group>"; };
 		0CFE13142C110CB0000747C8 /* LoadingState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingState.swift; sourceTree = "<group>"; };
@@ -278,7 +296,9 @@
 		0C5E77492C17709100F790D5 /* SwitchToProviderSheet */ = {
 			isa = PBXGroup;
 			children = (
-				0C5E774A2C1770A500F790D5 /* SwitchToProviderSheet.swift */,
+				0C5E776B2C17C65900F790D5 /* Model */,
+				0C5E77682C17C5CB00F790D5 /* ViewModel */,
+				0C5E77672C17C5C300F790D5 /* View */,
 			);
 			path = SwitchToProviderSheet;
 			sourceTree = "<group>";
@@ -286,6 +306,9 @@
 		0C5E774C2C177E3900F790D5 /* NominatedRequests */ = {
 			isa = PBXGroup;
 			children = (
+				0C5E77832C18398F00F790D5 /* Model */,
+				0C7397A12C18491400100FB2 /* View */,
+				0C7397A22C18491900100FB2 /* ViewModel */,
 			);
 			path = NominatedRequests;
 			sourceTree = "<group>";
@@ -378,6 +401,104 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		0C5E77672C17C5C300F790D5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0C5E774A2C1770A500F790D5 /* SwitchToProviderSheet.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		0C5E77682C17C5CB00F790D5 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				0C5E77692C17C5D700F790D5 /* SwitchToProviderSheetViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		0C5E776B2C17C65900F790D5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0C5E776C2C17C66400F790D5 /* UserServiceModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		0C5E776E2C181EA800F790D5 /* RequestDetailsView */ = {
+			isa = PBXGroup;
+			children = (
+				0C5E77752C1820E200F790D5 /* Model */,
+				0C5E77732C1820D800F790D5 /* View */,
+				0C5E77742C1820DD00F790D5 /* ViewModel */,
+			);
+			path = RequestDetailsView;
+			sourceTree = "<group>";
+		};
+		0C5E77732C1820D800F790D5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0C5E776F2C181EB600F790D5 /* RequestDetailsView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		0C5E77742C1820DD00F790D5 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				0C5E77712C181F9500F790D5 /* RequestDetailsViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		0C5E77752C1820E200F790D5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0C5E77762C1820ED00F790D5 /* RequestStatusModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		0C5E777A2C182D2E00F790D5 /* TermsAndConditionsView */ = {
+			isa = PBXGroup;
+			children = (
+				0C5E777C2C182D4D00F790D5 /* TermsAndConditionsView.swift */,
+			);
+			path = TermsAndConditionsView;
+			sourceTree = "<group>";
+		};
+		0C5E777B2C182D3F00F790D5 /* AboutUsView */ = {
+			isa = PBXGroup;
+			children = (
+				0C5E777F2C18385F00F790D5 /* AboutUsView.swift */,
+			);
+			path = AboutUsView;
+			sourceTree = "<group>";
+		};
+		0C5E77832C18398F00F790D5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0C5E77842C18399800F790D5 /* UpdateProviderLocation.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		0C7397A12C18491400100FB2 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0C5E77782C1825AB00F790D5 /* NominatedRequestsView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		0C7397A22C18491900100FB2 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				0C5E77812C18395F00F790D5 /* NominatedRquestsViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		0C929DB22C1359340037D927 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -451,6 +572,8 @@
 		0CD662712C13540E004BC263 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				0C5E777B2C182D3F00F790D5 /* AboutUsView */,
+				0C5E777A2C182D2E00F790D5 /* TermsAndConditionsView */,
 				0C5E77492C17709100F790D5 /* SwitchToProviderSheet */,
 				0C5409412C166CEE000607B2 /* Model */,
 				0CD662722C135417004BC263 /* ProfileView.swift */,
@@ -501,6 +624,7 @@
 		0CFE128C2C110210000747C8 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				0C5E776E2C181EA800F790D5 /* RequestDetailsView */,
 				0C5E774C2C177E3900F790D5 /* NominatedRequests */,
 				0C54093E2C164B47000607B2 /* NominatedProviders */,
 				0C5409342C15CEA0000607B2 /* MedicalServiceSheet */,
@@ -655,14 +779,6 @@
 			path = CustomViews;
 			sourceTree = "<group>";
 		};
-		0CFE13102C110CB0000747C8 /* Navigation */ = {
-			isa = PBXGroup;
-			children = (
-				0CFE130F2C110CB0000747C8 /* Router.swift */,
-			);
-			path = Navigation;
-			sourceTree = "<group>";
-		};
 		0CFE13122C110CB0000747C8 /* SharedModels */ = {
 			isa = PBXGroup;
 			children = (
@@ -685,7 +801,6 @@
 			isa = PBXGroup;
 			children = (
 				0CFE130E2C110CB0000747C8 /* CustomViews */,
-				0CFE13102C110CB0000747C8 /* Navigation */,
 				0CFE13152C110CB0000747C8 /* Shared */,
 				0CFE13162C110CB0000747C8 /* AppSettings.swift */,
 				0CFE13172C110CB0000747C8 /* BaseViewModel.swift */,
@@ -802,6 +917,7 @@
 				0CFE131F2C110CB0000747C8 /* DatePickerSheet.swift in Sources */,
 				0CFE12F42C110BFB000747C8 /* MimeTypeConfirmable+Ex.swift in Sources */,
 				0CD662732C135417004BC263 /* ProfileView.swift in Sources */,
+				0C5E77792C1825AC00F790D5 /* NominatedRequestsView.swift in Sources */,
 				0CFE12B82C11080F000747C8 /* APIService.swift in Sources */,
 				0CD662572C11C21C004BC263 /* WelcomeView.swift in Sources */,
 				0CD662622C12F2A7004BC263 /* SignUpRequest.swift in Sources */,
@@ -811,7 +927,9 @@
 				0CFE131C2C110CB0000747C8 /* CustomListView.swift in Sources */,
 				0CFE12B72C11080F000747C8 /* APIRouter.swift in Sources */,
 				0CFE12A62C11050F000747C8 /* UIButton+Extention.swift in Sources */,
+				0C5E77772C1820ED00F790D5 /* RequestStatusModel.swift in Sources */,
 				0CFE132B2C110CB0000747C8 /* AppSettings.swift in Sources */,
+				0C5E776D2C17C66400F790D5 /* UserServiceModel.swift in Sources */,
 				0CFE12A42C11050F000747C8 /* SVProgressHUD+Extention.swift in Sources */,
 				0CFE12AC2C11050F000747C8 /* View+Extension.swift in Sources */,
 				0C5409402C164B63000607B2 /* RequestNominatedProvidersView.swift in Sources */,
@@ -819,6 +937,7 @@
 				0CFE12A32C11050F000747C8 /* String+Extension.swift in Sources */,
 				0CFE12AB2C11050F000747C8 /* UIWindowScene+Extension.swift in Sources */,
 				0CFE12F52C110BFB000747C8 /* Int+Ex.swift in Sources */,
+				0C5E77802C18385F00F790D5 /* AboutUsView.swift in Sources */,
 				0CFE12DE2C110B67000747C8 /* RoundedCorner.swift in Sources */,
 				0CFE13242C110CB0000747C8 /* MailView.swift in Sources */,
 				0CD662702C13540B004BC263 /* HomeView.swift in Sources */,
@@ -831,13 +950,16 @@
 				0CFE12DB2C110AFE000747C8 /* ToastItem.swift in Sources */,
 				0CD6625D2C11EAC5004BC263 /* LoginView.swift in Sources */,
 				0CFE12D72C110AFE000747C8 /* BaseToastView.swift in Sources */,
-				0CFE13272C110CB0000747C8 /* Router.swift in Sources */,
 				0C5409362C15CEB9000607B2 /* MedicalServiceSheet.swift in Sources */,
+				0C5E77722C181F9500F790D5 /* RequestDetailsViewModel.swift in Sources */,
 				0CFE13192C110CB0000747C8 /* ActivityIndicator.swift in Sources */,
 				0CFE12E32C110B8F000747C8 /* AlertItem.swift in Sources */,
+				0C5E776A2C17C5D700F790D5 /* SwitchToProviderSheetViewModel.swift in Sources */,
+				0C5E77852C18399800F790D5 /* UpdateProviderLocation.swift in Sources */,
 				0CFE12A72C11050F000747C8 /* UIColor+Extension.swift in Sources */,
 				0CFE12FF2C110BFB000747C8 /* JSONDecoder+Ex.swift in Sources */,
 				0CFE12F62C110BFB000747C8 /* UIColor+Ex.swift in Sources */,
+				0C5E77702C181EB600F790D5 /* RequestDetailsView.swift in Sources */,
 				0C929DB42C13593F0037D927 /* MedicalService.swift in Sources */,
 				0C5E774B2C1770A500F790D5 /* SwitchToProviderSheet.swift in Sources */,
 				0CFE12AA2C11050F000747C8 /* UILabel+Extention.swift in Sources */,
@@ -863,6 +985,7 @@
 				0CFE13202C110CB0000747C8 /* DocumentPicker.swift in Sources */,
 				0CFE131E2C110CB0000747C8 /* CustomTextFieldView.swift in Sources */,
 				0C5E77592C179F3800F790D5 /* HomeViewModel.swift in Sources */,
+				0C5E777D2C182D4D00F790D5 /* TermsAndConditionsView.swift in Sources */,
 				0CFE12BB2C11080F000747C8 /* K.swift in Sources */,
 				0C5E77642C17A59300F790D5 /* MedicalServiceSheetViewModel.swift in Sources */,
 				0CFE127E2C1101EF000747C8 /* MedicalHomeServicesApp.swift in Sources */,
@@ -877,6 +1000,7 @@
 				0CFE12A52C11050F000747C8 /* UIApplication+Extension.swift in Sources */,
 				0CFE13262C110CB0000747C8 /* TabsView.swift in Sources */,
 				0CD662512C11BF78004BC263 /* UserRepsonse.swift in Sources */,
+				0C5E77822C18395F00F790D5 /* NominatedRquestsViewModel.swift in Sources */,
 				0C5E774E2C17899800F790D5 /* LoginViewModel.swift in Sources */,
 				0CFE129F2C11050F000747C8 /* CGFloat+Extention.swift in Sources */,
 				0CFE131B2C110CB0000747C8 /* CustomDropDownMenuView.swift in Sources */,

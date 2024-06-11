@@ -14,6 +14,7 @@ struct MainTabBar: View {
     enum MainTabs: Hashable, CaseIterable {
         case Home
         case Profile
+        case Requests
     }
     
     @EnvironmentObject var appState: AppSettings
@@ -30,12 +31,23 @@ struct MainTabBar: View {
                 }
                 .tag(MainTabs.Home)
             
+            
+            if let roles = appState.currentUser?.roles , roles.count > 1 {
+                NominatedRequestsView()
+                    .tabItem {
+                        Label(selection == .Requests ? LocalizedStringKey("Requests") : "", image: selection == .Requests ? "ic_taskCenter_tab_selected" : "ic_taskCenter_tab")
+                            .currentAppFont(weight: .semibold)
+                    }
+                    .tag(MainTabs.Requests)
+            }
+            
             ProfileView()
                 .tabItem {
                     Label(selection == .Profile ? LocalizedStringKey("Profile") : "", image: selection == .Profile ? "ic_more_tab_selected" : "ic_more_tab")
                         .currentAppFont(weight: .semibold)
                 }
                 .tag(MainTabs.Profile)
+       
             
         }
         .tint(.primaryColor)

@@ -40,16 +40,16 @@ struct LoginView: View {
 
                 CustomInputField(title: "Password", placeholder: "********", text: $viewModel.password, isSecure: true)
 
-                HStack {
-                    Spacer()
-                    Button(action: {
-                        // Action for forget password
-                    }) {
-                        Text("Forget Password")
-                            .font(.footnote)
-                            .foregroundColor(.accent)
-                    }
-                }
+//                HStack {
+//                    Spacer()
+//                    Button(action: {
+//                        // Action for forget password
+//                    }) {
+//                        Text("Forget Password")
+//                            .font(.footnote)
+//                            .foregroundColor(.accent)
+//                    }
+//                }
             }
             .padding(.horizontal, 30)
 

@@ -11,6 +11,7 @@ import SwiftUI
 struct RequestNominatedProvidersView: View {
     @Environment(\.presentationMode) private var presentationMode
     @StateObject var viewModel : RequestNominatedProvidersViewModel
+    @State var showRequestDetails = false
     
     init(requestId:Int) {
         self._viewModel = StateObject(wrappedValue: RequestNominatedProvidersViewModel(requestID: requestId))
@@ -63,6 +64,13 @@ struct RequestNominatedProvidersView: View {
             .onDisappear(perform: {
                 viewModel.timer = nil
             })
+            .onReceive(viewModel.navigateToRequestDetailsSubject, perform: { _ in
+                showRequestDetails.toggle()
+            })
+            .navigationDestination(isPresented: $showRequestDetails) {
+                RequestDetailsView(requestId: viewModel.requestID)
+                    .navigationBarBackButtonHidden()
+            }
         }
         .toolbar(.hidden, for: .tabBar)
     }
@@ -85,40 +93,48 @@ struct RequestNominatedProvidersView: View {
         VStack(alignment: .leading) {
             if let providers = viewModel.nominatedProviders {
                 ForEach(providers) { provider in
-                    HStack {
-                        Image("provider")
-                            .resizable()
-                            .frame(width: 24, height: 24)
-                            .clipShape(Circle())
-                            .shadow(radius: 1)
-                            .padding(.top, 50)
-                            .foregroundStyle(.gray)
-                        
-                        Text(provider.name ?? "")
-                            .padding()
-                            .background(Color.gray.opacity(0.2))
-                            .cornerRadius(8)
-                            .padding(.vertical, 4)
-                    }
-                    
-                    Spacer()
-                    
-                    CustomButton(title: "Accept",
-                                 foregroundColor: .white,
-                                 backgroundColor: .green) {
-                        //Action for accept
-                        
-                    }
-                        .frame(width: 80)
-                    
-                    CustomButton(title: "Reject",
-                                 foregroundColor: .white,
-                                 backgroundColor: .red) {
-                        //Action for Reject
+                    VStack {
+                        HStack(alignment:.lastTextBaseline){
+                            Image("provider")
+                                .resizable()
+                                .frame(width: 64, height: 64)
+                                .clipShape(Circle())
+                                .shadow(radius: 1)
+                                .foregroundStyle(.gray)
+                            
+                            VStack(alignment:.leading,spacing:8) {
+                                Text(provider.fullName ?? "")
+                                    .font(.title3)
+                                    .fontWeight(.semibold)
+                                    .cornerRadius(8)
+                                    .padding(.vertical, 4)
+                                
+                                Text("\(provider.distance ?? 0) m away")
+                                    .font(.headline)
+                                    .fontWeight(.medium)
+                                    .cornerRadius(8)
+                                    .padding(.vertical, 4)
+                            }
+                        }
+                        .padding(.top,16)
 
-                        
+                        Spacer()
+                        CustomButton(title: "Choose Provider",
+                                     foregroundColor: .white,
+                                     backgroundColor: .green) {
+                            //Action for accept
+                            if let id = provider.providerID {
+                                Task {
+                                    await viewModel.addTempProviderToRequest(providerId:id)
+                                }
+                            }
+                        }
+                            .frame(height: 50)
+                            .padding(.horizontal,48)
+                            .padding(.vertical,24)
                     }
-                        .frame(width: 80)
+                    .background(.gray.opacity(0.2))
+                    .cornerRadius(18, corners: .allCorners)
                 }
             }
         }

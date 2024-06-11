@@ -1,6 +1,5 @@
 //
 // BaseViewModel.swift
-// splus-v3-ios
 //
 // Created by Hussein Anwar.
 //

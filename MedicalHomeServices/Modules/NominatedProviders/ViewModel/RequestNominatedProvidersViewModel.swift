@@ -12,6 +12,7 @@ import Combine
 class RequestNominatedProvidersViewModel : BaseViewModel {
     @Published var isFetchingProviders: Bool = true
     @Published var nominatedProviders: [NominatedProvider]? = []
+    var navigateToRequestDetailsSubject = PassthroughSubject<Void,Never>()
 
     var timer: AnyCancellable?
     var requestID: Int
@@ -54,6 +55,24 @@ class RequestNominatedProvidersViewModel : BaseViewModel {
                 isFetchingProviders = false
                 stopFetchingProviders()
             }
+            
+            self.state.endLoading()
+            error = nil
+        } catch {
+            self.error = error
+        }
+        state.endLoading()
+    }
+    
+    @MainActor
+    func addTempProviderToRequest(providerId:Int) async {
+        state.startLoading()
+        do {
+            let request = AddTempProviderToRequest(tempProviderID: providerId, requestID: requestID, providerReactionToRequest: nil)
+            let route = APIRouter.AddTempProviderToRequest(request)
+            let response : ResultResponse?
+            response = try await APIService.shared.fetch(route: route)
+            navigateToRequestDetailsSubject.send(())
             
             self.state.endLoading()
             error = nil

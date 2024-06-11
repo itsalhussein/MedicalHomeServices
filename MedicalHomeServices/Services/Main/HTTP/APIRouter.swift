@@ -1,9 +1,4 @@
-//
-//  APIRouter.swift
-//  Tarat Store
-//
-//  Created by Khaled Khaldi on 12/02/2022.
-//
+
 
 import Foundation
 import Alamofire
@@ -20,16 +15,17 @@ enum APIRouter: URLRequestConvertible {
     
     case GetUserServices(Int)
     
-    case AddTempProviderToRequest
-    case ActionByProviderToRequest
-    case GetRequestStatus
-    case UpdateRequestStatus
+    case AddTempProviderToRequest(AddTempProviderToRequest)
+    case ActionByProviderToRequest(ActionByProviderToRequest)
+    case GetRequestStatus(Int)
+    case UpdateRequestStatus(UpdateRequestStatus)
+    case UpdateProviderLocation(UpdateProviderLocation)
 
     //MARK: - Updates
 
     public var method: HTTPMethod {
         switch self {
-        case .Register,.Login,.AddUserToProviderRequest,.ServiceRequest,.ActionByProviderToRequest,.AddTempProviderToRequest,.UpdateRequestStatus:
+        case .Register,.Login,.AddUserToProviderRequest,.ServiceRequest,.ActionByProviderToRequest,.AddTempProviderToRequest,.UpdateRequestStatus,.UpdateProviderLocation:
             return .post
         case .MedicalServices,.RequestNominatedProviders,.ProviderNominatedRequests,.GetUserServices,.GetRequestStatus:
             return .get
@@ -62,6 +58,8 @@ enum APIRouter: URLRequestConvertible {
             return "/ServiceRequest/NotifyUserOfRequestStatus"
         case .UpdateRequestStatus:
             return "/ServiceRequest/UpdateRequestStatus"
+        case .UpdateProviderLocation:
+            return "/ProviderLocation/UpadteProviderLocation"
         }
     }
     
@@ -86,7 +84,14 @@ enum APIRouter: URLRequestConvertible {
             return try? newJSONEncoder().encode(model)
         case .ServiceRequest(let model):
             return try? newJSONEncoder().encode(model)
-
+        case .AddTempProviderToRequest(let model):
+            return try? newJSONEncoder().encode(model)
+        case .ActionByProviderToRequest(let model):
+            return try? newJSONEncoder().encode(model)
+        case .UpdateRequestStatus(let model):
+            return try? newJSONEncoder().encode(model)
+        case .UpdateProviderLocation(let model):
+            return try? newJSONEncoder().encode(model)
         default:
             break
         }
@@ -103,6 +108,9 @@ enum APIRouter: URLRequestConvertible {
             return [URLQueryItem(name: "providerID", value: "\(providerId)")]
         case .GetUserServices(let userId):
             return [URLQueryItem(name: "userID", value: "\(userId)")]
+        case .GetRequestStatus(let requestId):
+            return [URLQueryItem(name: "requestID", value: "\(requestId)")]
+
     
         default:
             break

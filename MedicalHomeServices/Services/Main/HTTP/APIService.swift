@@ -1,9 +1,3 @@
-//
-//  APIClient.swift
-//  Tarat Store
-//
-//  Created by Khaled Khaldi on 12/02/2022.
-//
 
 import Foundation
 import Alamofire
@@ -115,46 +109,7 @@ extension APIService: ServiceProtocol {
     
     
     // MARK: - Private
-    
-    private func getUploadRequest(for route: APIRouter) -> UploadRequest {
-        APIService.session.upload(
-            multipartFormData: { multipartFormData in
-                route.multiPartData?.forEach { object in
-                    guard let data = object.data else { return }
-                    var fileName = object.fileName
-                    let mime = Swime.mimeType(data: data)
 
-                    if fileName.isNilOrEmpty {
-                        fileName = [
-                            String(Date.timeIntervalSinceReferenceDate),
-                            mime?.ext
-                        ]
-                            .compactMap { $0 }
-                            .joined(separator: ".")
-                    }
-                    let mimeType = object.mimeType ?? mime?.mime ?? "application/octet-stream"
-
-                    multipartFormData.append(
-                        data,
-                        withName: object.name,
-                        fileName: fileName,
-                        mimeType: mimeType
-                    )
-                }
-                
-                
-                route.multiPartParameters?.forEach { item in
-                    guard let data = item.value?.data(using: .utf8) else { return }
-
-                    multipartFormData.append(data, withName: item.name)
-                }
-                
-            },
-            with: route,
-            interceptor: RequestInterceptor()
-        )
-    }
-    
     private func handleResponse<ModelType: Decodable>(response: DataResponse<ModelType?, AFError>) throws -> ModelType? {
             switch response.result {
             case .success(let dataWrapper):

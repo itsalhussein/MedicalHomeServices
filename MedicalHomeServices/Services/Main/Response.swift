@@ -1,10 +1,3 @@
-//
-//  Response.swift
-//  Snack
-//
-//  Created by Khaled Khaldi on 15/03/2022.
-//
-
 import Foundation
 
 enum APIResponse<T: Decodable>: Decodable {
