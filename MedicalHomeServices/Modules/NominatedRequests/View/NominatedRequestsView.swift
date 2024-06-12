@@ -55,17 +55,27 @@ struct NominatedRequestsView: View {
                     }
                 }
             }
+            .overlay {
+                if viewModel.state.isLoading {
+                    CircleProgressView()
+                }
+            }
             .onAppear(perform: {
                 Task {
                     await viewModel.updateProviderLocation()
-                    await viewModel.fetchNominatedRequests()
                 }
+                viewModel.startFetchingRequests()
+            })
+            .onDisappear(perform: {
+                viewModel.stopFetchingProviders()
             })
             .navigationDestination(isPresented: $showRequestDetails) {
                 if let id = viewModel.selectedRequestId {
                     RequestDetailsView(requestId: id,isProvider: true)
+                        .navigationBarBackButtonHidden()
                 }
             }
+            .toolbar(.visible, for: .tabBar)
         }
     }
     
@@ -102,6 +112,12 @@ struct NominatedRequestsView: View {
                                     .fontWeight(.semibold)
                                     .cornerRadius(8)
                                     .padding(.vertical, 4)
+                                
+                                Text("\(request.distance?.max2FractionDigits() ?? "0") m away")
+                                    .font(.headline)
+                                    .fontWeight(.medium)
+                                    .cornerRadius(8)
+                                    .padding(.vertical, 4)
                             }
                         }
                         .padding(.top,16)
@@ -113,9 +129,9 @@ struct NominatedRequestsView: View {
                                          backgroundColor: .green) {
                                 //Action for accept
                                 if let id = request.requestID {
-                                    let requestStatus = UpdateRequestStatus(requestID: id, userID: AppSettings.shared.currentUser?.userID, status: 1)
+                                    let requestStatus = ActionByProviderToRequest(tempProviderID: AppSettings.shared.currentUser?.userID, requestID: id, providerReactionToRequest: 1)
                                     Task {
-                                        await Helper.updateRequestStatus(requestStatus:requestStatus) { _ in
+                                        await Helper.actionByProviderToRequest(requestStatus:requestStatus) { _ in
                                             viewModel.selectedRequestId = id
                                             showRequestDetails.toggle()
                                         }
@@ -123,17 +139,15 @@ struct NominatedRequestsView: View {
                                 }
                             }
                                          .frame(width:160,height: 50)
-//                                .padding(.horizontal,48)
-//                                .padding(.vertical,24)
                             
                             CustomButton(title: "Reject",
                                          foregroundColor: .white,
                                          backgroundColor: .red) {
                                 //Action for accept
                                 if let id = request.requestID {
-                                    let requestStatus = UpdateRequestStatus(requestID: id, userID: AppSettings.shared.currentUser?.userID, status: 0)
+                                    let requestStatus = ActionByProviderToRequest(tempProviderID: AppSettings.shared.currentUser?.userID, requestID: id, providerReactionToRequest: 0)
                                     Task {
-                                        await Helper.updateRequestStatus(requestStatus:requestStatus) { _ in
+                                        await Helper.actionByProviderToRequest(requestStatus:requestStatus) { _ in
                                             Task {
                                                 await viewModel.fetchNominatedRequests()
                                             }
@@ -142,8 +156,6 @@ struct NominatedRequestsView: View {
                                 }
                             }
                                 .frame(width:160,height: 50)
-//                                .padding(.horizontal,48)
-//                                .padding(.vertical,24)
                         }
                         .padding(.vertical)
                        

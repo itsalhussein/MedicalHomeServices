@@ -78,7 +78,7 @@ class SwitchToProviderSheetViewModel : BaseViewModel {
             error = nil
         } catch {
             self.error = error
-            
+            successSubject.send(())
         }
         state.endLoading()
     }

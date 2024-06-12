@@ -12,6 +12,7 @@ import Combine
 struct SwitchToProviderSheet: View {
     @StateObject var viewModel = SwitchToProviderSheetViewModel()
     @Environment(\.presentationMode) private var presentationMode
+    @Environment(\.dismiss) private var dismiss
 
     var body: some View {
         VStack(alignment: .leading) {
@@ -52,7 +53,7 @@ struct SwitchToProviderSheet: View {
             }
         })
         .onReceive(viewModel.successSubject, perform: { _ in
-            presentationMode.wrappedValue.dismiss()
+            dismiss()
         })
     }
     

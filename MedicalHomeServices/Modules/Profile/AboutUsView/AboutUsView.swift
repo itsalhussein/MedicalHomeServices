@@ -46,11 +46,11 @@ struct AboutUsView: View {
                 Text("Contact Us")
                     .font(.headline)
                 
-                Text("""
-                    Email: support@ourapp.com
-                    Phone: (123) 456-7890
-                    Address: 1234 App Street, Tech City, TX 12345
-                    """)
+//                Text("""
+//                    Email: support@ourapp.com
+//                    Phone: (123) 456-7890
+//                    Address: 1234 App Street, Tech City, TX 12345
+//                    """)
                 
                 Spacer()
             }

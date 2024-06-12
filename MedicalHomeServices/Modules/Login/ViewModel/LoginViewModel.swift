@@ -12,17 +12,20 @@ import SDWebImage
 import SDWebImageSwiftUI
 import SDWebImageSVGCoder
 
+
 class LoginViewModel : BaseViewModel {
     @Published var mobileNumber: String = ""
     @Published var password: String = ""
     var successSubject = PassthroughSubject<Void,Never>()
 
-    @MainActor
+    @MainActor // attribute main thread
     func signIn() async {
         state.startLoading()
         do {
             let request = SignInRequest(mobileNumber: mobileNumber, password: password, fullName: nil, email: nil, dateOfBirth: nil)
+            
             let route = APIRouter.Login(request)
+            
             let response : UserRepsonse?
             response = try await APIService.shared.fetch(route: route)
             

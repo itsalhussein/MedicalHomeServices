@@ -8,15 +8,17 @@
 
 import SwiftUI
 import Combine
+
 import SDWebImage
 import SDWebImageSwiftUI
 import SDWebImageSVGCoder
 
 struct LoginView: View {
-    @StateObject var viewModel = LoginViewModel()
+    @StateObject var viewModel = LoginViewModel() //instance of view model
+    // navigation
     @State var navigateToSignUp : Bool = false
     @State var navigateToHome : Bool = false
-    @Environment(\.presentationMode) private var presentationMode
+    @Environment(\.presentationMode) private var presentationMode //dismiss
 
     var body: some View {
         VStack {
@@ -40,16 +42,7 @@ struct LoginView: View {
 
                 CustomInputField(title: "Password", placeholder: "********", text: $viewModel.password, isSecure: true)
 
-//                HStack {
-//                    Spacer()
-//                    Button(action: {
-//                        // Action for forget password
-//                    }) {
-//                        Text("Forget Password")
-//                            .font(.footnote)
-//                            .foregroundColor(.accent)
-//                    }
-//                }
+
             }
             .padding(.horizontal, 30)
 
@@ -59,7 +52,7 @@ struct LoginView: View {
                          foregroundColor: .white,
                          backgroundColor: .accent,
                          action: {
-                // Action for login
+                // Closure for login action
                 Task {
                     await viewModel.signIn()
                 }

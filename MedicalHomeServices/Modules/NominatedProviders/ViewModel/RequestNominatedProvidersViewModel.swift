@@ -35,7 +35,6 @@ class RequestNominatedProvidersViewModel : BaseViewModel {
                             await self.fetchNominatedProviders()
                         }
                     }
-                    
     }
     
     func stopFetchingProviders() {
@@ -70,7 +69,7 @@ class RequestNominatedProvidersViewModel : BaseViewModel {
         do {
             let request = AddTempProviderToRequest(tempProviderID: providerId, requestID: requestID, providerReactionToRequest: nil)
             let route = APIRouter.AddTempProviderToRequest(request)
-            let response : ResultResponse?
+            let response : String?
             response = try await APIService.shared.fetch(route: route)
             navigateToRequestDetailsSubject.send(())
             
@@ -78,6 +77,7 @@ class RequestNominatedProvidersViewModel : BaseViewModel {
             error = nil
         } catch {
             self.error = error
+            navigateToRequestDetailsSubject.send(())
         }
         state.endLoading()
     }

@@ -10,6 +10,7 @@ import SwiftUI
 
 struct RequestNominatedProvidersView: View {
     @Environment(\.presentationMode) private var presentationMode
+    @Environment(\.dismiss) private var dismiss
     @StateObject var viewModel : RequestNominatedProvidersViewModel
     @State var showRequestDetails = false
     
@@ -44,7 +45,7 @@ struct RequestNominatedProvidersView: View {
                             .frame(width: 16,height: 16)
                             .foregroundStyle(.black)
                             .onTapGesture {
-                                presentationMode.wrappedValue.dismiss()
+                                dismiss()
                             }
                     }
                 }
@@ -109,7 +110,7 @@ struct RequestNominatedProvidersView: View {
                                     .cornerRadius(8)
                                     .padding(.vertical, 4)
                                 
-                                Text("\(provider.distance ?? 0) m away")
+                                Text("\(provider.distance?.max2FractionDigits() ?? "0") m away")
                                     .font(.headline)
                                     .fontWeight(.medium)
                                     .cornerRadius(8)
@@ -122,7 +123,7 @@ struct RequestNominatedProvidersView: View {
                         CustomButton(title: "Choose Provider",
                                      foregroundColor: .white,
                                      backgroundColor: .green) {
-                            //Action for accept
+                            //Action for choosing provider
                             if let id = provider.providerID {
                                 Task {
                                     await viewModel.addTempProviderToRequest(providerId:id)

@@ -26,7 +26,21 @@ final class Helper {
                 completion(response)
             }
         } catch {
-            
+            completion(RequestStatusResponse(requestID: requestStatus.requestID, status: "requestStatus", tempProviderID: 0, tempProviderName: "requestStatus.tempProviderID"))
+        }
+    }
+    
+    @MainActor
+    public static func actionByProviderToRequest(requestStatus:ActionByProviderToRequest,completion: @escaping (RequestStatusResponse)->Void) async {
+        do {
+            let route = APIRouter.ActionByProviderToRequest(requestStatus)
+            let response : String?
+            response = try await APIService.shared.fetch(route: route)
+            if let response {
+                completion(RequestStatusResponse(requestID: requestStatus.requestID, status: "requestStatus", tempProviderID: requestStatus.tempProviderID, tempProviderName: "requestStatus.tempProviderID"))
+            }
+        } catch {
+            completion(RequestStatusResponse(requestID: requestStatus.requestID, status: "requestStatus", tempProviderID: requestStatus.tempProviderID, tempProviderName: "requestStatus.tempProviderID"))
         }
     }
 }

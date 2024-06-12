@@ -14,6 +14,8 @@ class RequestDetailsViewModel : BaseViewModel {
     @Published var requestStatusResponse: RequestStatusResponse?
     var requestId:Int
     var timer: AnyCancellable?
+    var dismissWhenDoneSubject = PassthroughSubject<Void,Never>()
+    var dismissAndNavigateToProvidersList = PassthroughSubject<Void,Never>()
 
     init(requestId:Int){
         self.requestId = requestId
@@ -52,6 +54,14 @@ class RequestDetailsViewModel : BaseViewModel {
             if let response {
                 isFetchingRequestStatus = false 
                 requestStatusResponse = response
+                print("requestStatusResponse ===== ",requestStatusResponse)
+                if response.status == "Done" {
+                    dismissWhenDoneSubject.send(())
+                }
+                
+                if response.tempProviderID == nil {
+                    dismissAndNavigateToProvidersList.send(())
+                }
             }
             self.state.endLoading()
             error = nil

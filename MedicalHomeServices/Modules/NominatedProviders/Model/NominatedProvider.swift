@@ -19,6 +19,12 @@ struct NominatedProvider : Codable,Identifiable {
     let providerID:Int?
     let userName:String?
     let distance: Double?
+    enum CodingKeys: CodingKey {
+        case fullName
+        case providerID
+        case userName
+        case distance
+    }
 }
 
 
@@ -43,6 +49,13 @@ struct ResultResponse : Codable {
 }
 
 
+
+
+struct NominatedRequestResponse : Codable {
+    let requestID : Int?
+    let nominatedRequests : [NominatedRequestModel]?
+}
+
 struct NominatedRequestModel : Codable,Identifiable {
     var id = UUID()
     let requestID : Int?
@@ -51,6 +64,14 @@ struct NominatedRequestModel : Codable,Identifiable {
     let appUserId:Int?
     let userFullName:String?
     let userName:String?
+    enum CodingKeys: CodingKey {
+        case requestID
+        case distance
+        case serviceId
+        case appUserId
+        case userFullName
+        case userName
+    }
 }
 
 

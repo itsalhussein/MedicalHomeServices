@@ -10,6 +10,8 @@ import SwiftUI
 
 struct RequestDetailsView: View {
     @Environment(\.presentationMode) private var presentationMode
+    @Environment(\.dismiss) private var dismiss
+    @State var showNomintedProviders = false
     @StateObject var viewModel : RequestDetailsViewModel
     var isProvider : Bool
     init(requestId:Int,isProvider: Bool = false) {
@@ -45,7 +47,17 @@ struct RequestDetailsView: View {
                     if viewModel.isFetchingRequestStatus {
                         loadingView
                     } else {
-                        acceptedRequestView
+                        if let provider = viewModel.requestStatusResponse?.tempProviderID {
+                            let status = viewModel.requestStatusResponse?.status
+                            switch status {
+                            case "Accepted":
+                                acceptedRequestView
+                            default:
+                                loadingView
+                            }
+                        } else {
+                            rejectedRequestView
+                        }
                     }
                 }
                 
@@ -56,6 +68,17 @@ struct RequestDetailsView: View {
             .onDisappear(perform: {
                 viewModel.stopFetchingProviders()
             })
+            .onReceive(viewModel.dismissWhenDoneSubject, perform: { _ in
+                dismiss()
+            })
+            .onReceive(viewModel.dismissAndNavigateToProvidersList, perform: { _ in
+                showNomintedProviders.toggle()
+            })
+            .navigationDestination(isPresented: $showNomintedProviders, destination: {
+                RequestNominatedProvidersView(requestId: viewModel.requestId)
+                    .navigationBarBackButtonHidden()
+            })
+            .toolbar(.hidden, for: .tabBar)
         }
     }
     
@@ -87,7 +110,7 @@ struct RequestDetailsView: View {
                 .multilineTextAlignment(.center)
             
             VStack {
-                HStack(alignment:.lastTextBaseline){
+                HStack(alignment:.center){
                     Image(isProvider ? "provider" : "customer")
                         .resizable()
                         .frame(width: 72, height: 72)
@@ -114,9 +137,9 @@ struct RequestDetailsView: View {
                         //Action for close
                         Task {
                             let userId = AppSettings.shared.currentUser?.userID
-                            let requestStatus = UpdateRequestStatus(requestID: viewModel.requestId, userID: userId, status: 0)
+                            let requestStatus = UpdateRequestStatus(requestID: viewModel.requestId, userID: userId, status: 3)
                             await Helper.updateRequestStatus(requestStatus:requestStatus) { response in
-                                presentationMode.wrappedValue.dismiss()
+                                dismiss()
                             }
                         }
                         
@@ -130,6 +153,22 @@ struct RequestDetailsView: View {
             .background(.gray.opacity(0.1))
             .cornerRadius(18, corners: .allCorners)
             Spacer()
+        }
+    }
+    
+    var rejectedRequestView: some View {
+        return VStack {
+            Spacer()
+            Text("Provider has rejected your request")
+                .font(.title3)
+                .fontWeight(.semibold)
+                .foregroundStyle(.red)
+                .padding(16)
+                .background(.red.opacity(0.1))
+                .cornerRadius(8)
+                .multilineTextAlignment(.center)
+            Spacer()
+          
         }
     }
 }

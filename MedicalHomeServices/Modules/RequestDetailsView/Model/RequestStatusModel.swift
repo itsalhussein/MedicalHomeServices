@@ -12,6 +12,7 @@ import Foundation
 struct RequestStatusResponse : Codable {
     let requestID:Int?
     let status:String?
-    let tempProviderId:String?
+    let tempProviderID:Int?
     let tempProviderName:String?
 }
+
